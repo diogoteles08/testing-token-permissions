@@ -1,0 +1,15 @@
+name: Testing top-level contents write permissions with sigle job calling a third-party action
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+
+jobs:
+  third-party-action-without-job-level-permission:
+    runs-on: ubuntu-latest
+    name: Call third-party action with write permission inherited from top-level permissions
+
+    steps:
+      - name: Use random "not github" action
+        uses: lint-md/github-action@v0.0.2

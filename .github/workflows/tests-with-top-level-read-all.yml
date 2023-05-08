@@ -1,0 +1,41 @@
+name: Testing job-level write permissions with a top-level read-all
+on:
+  workflow_dispatch:
+
+# Declare default permissions as read only.
+permissions: read-all
+
+jobs:
+  action-from-github-with-contents-write:
+    runs-on: ubuntu-latest
+    name: Call github action with (unnecessary) write permission
+    permissions:
+      contents: write
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+    
+  third-party-action-with-package-write:
+    runs-on: ubuntu-latest   
+    name: Call third-party action with (unnecessary) write permission
+    permissions:
+      packages: write
+
+    steps:
+      - name: Use random "not github" action
+        uses: lint-md/github-action@v0.0.2
+        
+        
+  third-party-with-write-id-token:
+    runs-on: ubuntu-latest   
+    name: Call third-party action with id-token write permission
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Use random "not github" action
+        uses: lint-md/github-action@v0.0.2
