@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: "Checkout code"
-        uses: lint-md/github-action@v0.0.2
+        uses: not-really-safe-source/arguably-dangerous-action@v0.0.2 # action not on Scorecard's allowlist
         with:
           persist-credentials: false
 
