@@ -6,25 +6,12 @@ on:
 permissions: read-all
 
 jobs:
-  action-from-github-with-contents-write:
+  third-party-action-with-contents-write:
     runs-on: ubuntu-latest
-    name: Call github action with (unnecessary) write permission
+    name: Call third party action with write permission
     permissions:
       contents: write
 
     steps:
       - name: "Checkout code"
-        uses: not-really-safe-source/arguably-dangerous-action@v0.0.2 # action not on Scorecard's allowlist
-        with:
-          persist-credentials: false
-
-    
-  third-party-with-write-id-token:
-    runs-on: ubuntu-latest   
-    name: Call third-party action with id-token write permission
-    permissions:
-      id-token: write
-
-    steps:
-      - name: Use random "not github" action
-        uses: lint-md/github-action@v0.0.2
+        uses: not-really-safe-source/arguably-dangerous-action@master
